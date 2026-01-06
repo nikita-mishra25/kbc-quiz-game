@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KBC 6th Question</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('C:/Users/DELL/Desktop/K_B_C/image/amitabh.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .lifelines {
+      width: 15%;
+      display: flex;
+      height: 50px;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 100px;
+    }
+
+    .lifelines img {
+      width: 60px;
+      margin: 15px;
+      cursor: pointer;
+    }
+
+    .lifelines img.disabled {
+      filter: grayscale(100%);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .main-content {
+      flex: 1;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .main-content img {
+      width: 150px;
+      border-radius: 50%;
+      margin-top: 20px;
+    }
+
+    #timer {
+      display: none;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 2px solid yellow;
+      font-size: 24px;
+      color: yellow;
+    }
+
+    .question-box {
+      display: none;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #FFD700;
+      padding: 50px;
+      margin: 20px auto;
+      width: 70%;
+      border-radius: 10px;
+      color: white;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .option-btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 40%;
+    }
+
+    .option-btn:hover {
+      background-color: #388e3c;
+    }
+
+    .amount-panel {
+      width: 15%;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .amount {
+      background-color: #daa520;
+      color: black;
+      font-weight: bold;
+      padding: 10px 0;
+      margin: 10px;
+      border-radius: 15px;
+      transition: background-color 0.4s ease;
+      cursor: pointer;
+    }
+
+    .highlighted {
+      background-color: orange !important;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bgmusic" src="C:/Users/DELL/Desktop/K_B_C/Audio/kbc-awesome-5410.mp3"></audio>
+
+  <div class="container">
+
+    <div class="lifelines">
+      <img src="image/50-50.webp" id="life1" onclick="useLifeline('50-50')">
+      <img src="image/audiance.jpg" id="life2" onclick="useLifeline('audience')">
+      <img src="image/phone.jpg" id="life3" onclick="useLifeline('phone')">
+    </div>
+
+    <div class="main-content">
+      <img src="image/hotseet.WEBP" alt="Hotseat">
+      <h2 id="timer">⏱️ 30</h2>
+
+      <div class="question-box" id="questionBox">
+        <h3>6. Who was the first woman Prime Minister of India?</h3>
+
+        <div class="options">
+          <button class="option-btn" id="A" onclick="checkAnswer('right')">A. Indira Gandhi</button>
+          <button class="option-b tn" id="B" onclick="checkAnswer('wrong')">B. Sarojini Naidu</button>
+          <button class="option-btn" id="C" onclick="checkAnswer('wrong')">C. Sonia Gandhi</button>
+          <button class="option-btn" id="D" onclick="checkAnswer('wrong')">D. Pratibha Patil</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="amount-panel">
+      <div class="amount">7000000</div>
+      <div class="amount">1000000</div>
+      <div class="amount">90000</div>
+      <div class="amount">80000</div>
+      <div class="amount">70000</div>
+     <div class="amount highlighted" onclick="startGame()">60000</div> <!-- ✅ highlight fixed -->
+      <div class="amount">50000</div>
+      <div class="amount">40000</div>
+      <div class="amount">30000</div>
+      <div class="amount">20000</div>
+    </div>
+  </div>
+
+  <script>
+  let timerInterval;
+  let timeLeft = 30;
+
+  window.onload = function () {
+    ['life1', 'life2', 'life3'].forEach(id => {
+      if (sessionStorage.getItem(id) === 'used') {
+        document.getElementById(id).classList.add('disabled');
+      }
+    });
+  }
+
+  function startGame() {
+    document.getElementById("questionBox").style.display = "block";
+    document.getElementById("timer").style.display = "block";
+    document.getElementById("bgmusic").play();
+
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      document.getElementById("timer").innerText = `⏱️ ${timeLeft}`;
+      if (timeLeft === 0) {
+        clearInterval(timerInterval);
+        Swal.fire("⏱️ Time Up!", "Game Quit!", "error").then(() => {
+          window.location.href = "Quit_page.html";
+        });
+      }
+    }, 1000);
+  }
+
+  function checkAnswer(ans) {
+    clearInterval(timerInterval);
+    if (ans === 'right') {
+      // ✅ पहले background music बंद करो
+      document.getElementById("bgmusic").pause();
+      document.getElementById("bgmusic").currentTime = 0;
+
+      // ✅ जीत का sound play करो
+      let winSound = new Audio("C:/Users/DELL/Desktop/K_B_C/Audio/60k.MP3");
+      winSound.play();
+
+      Swal.fire("🎉 बधाई हो!", "आपने ₹60,000 जीत लिए!", "success").then(() => {
+        winSound.pause();   // ✅ OK दबाते ही sound बंद
+        winSound.currentTime = 0;
+        window.location.href = "C:/Users/DELL/Desktop/K_B_C/7th_que.html"; // ✅ अगले पेज पर redirect
+      });
+    } else {
+      Swal.fire("😞 Wrong Answer", "Game Quit!", "error").then(() => {
+        window.location.href = "Quit_page.html";
+      });
+    }
+  }
+
+  function useLifeline(type) {
+    if (type === '50-50') {
+      document.getElementById("life1").classList.add("disabled");
+      document.getElementById("B").style.display = "none";
+      document.getElementById("D").style.display = "none";
+      sessionStorage.setItem("life1", "used");
+    }
+
+    if (type === 'audience') {
+      document.getElementById("life2").classList.add("disabled");
+      Swal.fire("Audience Poll", "A. Indira Gandhi: 85%<br>B. Sarojini Naidu: 5%<br>C. Sonia Gandhi: 5%<br>D. Pratibha Patil: 5%", "info");
+      sessionStorage.setItem("life2", "used");
+    }
+
+    if (type === 'phone') {
+      document.getElementById("life3").classList.add("disabled");
+      Swal.fire("Phone a Friend", "I am confident, it is 'Indira Gandhi'.", "info");
+      sessionStorage.setItem("life3", "used");
+    }
+  }
+
+  </script>
+
+</body>
+</html>

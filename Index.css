@@ -1,0 +1,85 @@
+ body
+    {
+      background-color: #33004d;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      background-image: url("C:/Users/DELL/Desktop/K_B_C/image/2nd.webp");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+    }
+    .left-panel
+    {
+      width: 25%;
+      margin-left: 50px;
+      text-align: center;
+    }
+    .left-panel img
+    {
+      width: 80%;
+      border-radius: 10px;
+    }
+    .clock, .greeting
+    {
+      background: white;
+      color: black;
+      width: 200px;
+      font-size: 22px;
+      font-weight: bold;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    .form-container {
+      width: 90%;
+      background: transparent;
+      padding: 10px;
+      border: 3px solid #adff2f;
+      border-radius: 10px;
+      margin-left: 630px;
+    }
+    .form-container h2 {
+      text-align: center;
+      background: white;
+      color: black;
+      padding: 5px;
+      border-radius: 10px;
+    }
+    label
+    {
+      display: inline-block;
+      width: 150px;
+      margin: 10px 0;
+    }
+    input, select
+    {
+      padding: 5px;
+      margin: 5px 0;
+    }
+    .captcha-box {
+      background: yellow;
+      color: red;
+      font-weight: bold;
+      display: inline-block;
+      padding: 5px;
+      margin-right: 10px;
+    }
+    .submit-btn {
+      margin-top: 20px;
+    }
+    .submit-btn button:disabled
+    {
+      background-color: grey;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+    .strength
+     {
+      font-weight: bold;
+      padding-left: 10px;
+    }
+  

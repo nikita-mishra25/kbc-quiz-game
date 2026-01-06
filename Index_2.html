@@ -1,0 +1,96 @@
+<html>
+<head>
+  <title>Kaun Banega Crorepati</title>
+  <link rel="stylesheet" href="C:/Users/DELL/Desktop/K_B_C/CSS/Index_2.css">
+
+  <script>
+    let audio; 
+
+    function pageLoad() 
+    {
+      audio = document.getElementById("bgMusic");
+
+      // if thouch any where in screen start the music.
+      document.body.addEventListener("click", playMusicOnce);
+      // document.body.addEventListener("touchstart", playMusicOnce);
+
+      // Play button click
+      document.getElementById("playBtn").addEventListener("click", function () 
+      {
+        stopMusic();
+        window.location.href = "C:/Users/DELL/Desktop/K_B_C/Que_1.html";
+      });
+
+      // Quit button click
+      document.getElementById("quitBtn").addEventListener("click", function () 
+      {
+        stopMusic();
+        alert("Thank you for playing!");
+        window.location.href = "C:/Users/DELL/Desktop/K_B_C/Quit_page.html";
+      });
+
+      // Next button click
+      document.getElementById("nextBtn").addEventListener("click", function () 
+      {
+        stopMusic();
+        alert("Next question coming soon!");
+      });
+    }
+
+    // start music function
+    function playMusicOnce()
+     {
+      audio.play(); // start music
+      document.body.removeEventListener("click", playMusicOnce);  // if play music once then remove the event, taki dobara click pr music start na ho aur overlaping na ho.
+    }
+
+    // Stop music function
+    function stopMusic() 
+    {
+      if (audio)
+       {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }
+  </script>
+</head>
+
+<body onload="pageLoad()">
+
+  <!-- background music-->
+  <audio id="bgMusic" src="C:/Users/DELL/Desktop/K_B_C/Audio/kbc-awesome-5410.mp3" loop></audio> <!--Loop se music baar-baar repeat hoga-->
+  <!-- lifeline -->
+  <div class="lifelines">
+    <img src="image/50-50.webp" alt="50:50">
+    <img src="image/audiance.jpg" alt="Audience Poll">
+    <img src="image/phone.jpg" alt="Phone a Friend">
+  </div>
+
+  <!-- main screen -->
+  <div class="center-screen">
+    <img src="image/hotseet.webp" alt="Main Question Screen">
+    <div class="controls">
+      <button id="playBtn">Play</button>
+      <button id="quitBtn">Quit</button>
+      <button id="nextBtn">Next</button>
+    </div>
+  </div>
+
+  <!-- money tree -->
+  <div class="money-tree">
+    <div>70000000</div>
+    <div>1000000</div>
+    <div>90000</div>
+    <div>80000</div>
+    <div>70000</div>
+    <div>60000</div>
+    <div>50000</div>
+    <div>40000</div>
+    <div>30000</div>
+    <div>20000</div>
+    <div>10000</div>
+  </div>
+
+</body>
+</html>

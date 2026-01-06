@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>KBC_Terms_Condition</title>
+  <link rel="stylesheet" href="C:\Users\DELL\Desktop\K_B_C\CSS\Index_1.css">
+  <script src="C:/Users/DELL/Desktop/K_B_C/JS/Index_1.js"></script>
+</head>
+<body onload="page()">
+  <div class="container">
+    <div class="rules">
+      <ol>
+        <li>If the answer is correct then the player wins the corresponding amount of prize and proceeds to the next question.</li>
+        <li>If the answer is incorrect then the game ends. and the player takes the corresponding amount of the prize.</li>
+        <li>The game ends either when the player gives an incorrect answer or successfully answers all 10 questions.</li>
+        <li>The player's total winnings are displayed at the end of the game.</li>
+        <li>The player has the option to use lifelines during the game.</li>
+        <li>Three lifelines are available: 50:50, Phone a Friend, and Audience Poll</li>
+        <li>The player can use lifelines at any question, but only three lifelines are allowed in the entire game.</li>
+        <li>50:50 Lifeline: Removes two incorrect options and display remaining two option and one wrong option.</li>
+        <li>Phone a Friend: Pool for the answer from the friend.</li>
+        <li>Audience Poll: Pool for the answer from the audience.</li>
+      </ol>
+
+      <div class="bottom-section">
+        <input type="checkbox" id="agreeCheck">
+        <label for="agreeCheck">I have read the terms and conditions and I hereby accept and agree to the terms and conditions as stated above.</label>
+      </div>
+
+      <div class="buttons">
+        <button id="playBtn" disabled onclick="startGame()">Let's Play</button>
+        <button id="quitBtn" onclick="quitGame()">Quit</button>
+      </div>
+    </div>
+
+    <div class="right-image">
+      <img src="C:/Users/DELL/Desktop/K_B_C/image/amitabh.jpg" alt="Amitabh Bachchan">
+    </div>
+  </div>
+</body>
+</html>
